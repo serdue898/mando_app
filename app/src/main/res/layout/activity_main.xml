@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#17A2C5"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/Tx_ip"
+        android:layout_width="168dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/ip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/btt_conectar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#952B2B"
+        android:backgroundTint="#BF5353"
+        android:onClick="conectar_ip"
+        android:text="@string/conectar"
+        android:textColorHighlight="#812222"
+        android:textColorLink="#982C2C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toEndOf="@+id/Tx_ip"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="88dp"
+        android:layout_height="23dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/ip_ordenador"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Tx_ip"
+        app:layout_constraintHorizontal_bias="0.761"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <FrameLayout
+        android:layout_width="84dp"
+        android:layout_height="83dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.183">
+
+        <ImageView
+            android:id="@+id/joystick"
+            android:layout_width="82dp"
+            android:layout_height="81dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/joystick" />
+
+        <ImageView
+            android:id="@+id/ball"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/joystick_ball" />
+
+    </FrameLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="287dp"
+        android:layout_height="260dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Tx_ip"
+        app:layout_constraintVertical_bias="0.397">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btt_vol_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#952B2B"
+                android:backgroundTint="#BF5353"
+                android:text="vol up" />
+
+            <Button
+                android:id="@+id/btt_vol_down"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#952B2B"
+                android:backgroundTint="#BF5353"
+                android:text="vol down" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#952B2B"
+                android:backgroundTint="#BF5353"
+                android:text="mute" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#952B2B"
+                android:backgroundTint="#BF5353"
+                android:text="Button" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
