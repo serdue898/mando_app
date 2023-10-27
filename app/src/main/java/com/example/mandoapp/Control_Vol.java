@@ -1,10 +1,16 @@
 package com.example.mandoapp;
 
 import android.app.AlertDialog;
+import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Looper;
+
+import androidx.annotation.Nullable;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -16,12 +22,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class Control_Vol {
-
-    private ThreadPoolExecutor executor;
+public class Control_Vol extends Service {
+        AlertDialog.Builder aviso = null;
+        private ThreadPoolExecutor executor;
         private static final int SERVER_PORT = 9600;
 
-        private Socket socket;
+        public static Socket socket;
         private BufferedWriter writer;
         private Context ventana;
         public Control_Vol(Context context) {
@@ -43,52 +49,56 @@ public class Control_Vol {
                     OutputStream outputStream = socket.getOutputStream();
                     writer = new BufferedWriter(new OutputStreamWriter(outputStream));
                 } catch (IOException e) {
-                    Handler handler = new Handler(Looper.getMainLooper());
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(ventana);
-                            builder.setTitle("Error de conexión");
-                            builder.setMessage("No se pudo conectar al servidor.");
-                            builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    dialog.dismiss();
-                                }
-                            });
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-                        }
-                    });
+                    crear_aviso();
                 }
             }
         }).start();
     }
 
         public void increaseVolume() {
-            sendCommand("increase_volume");
+            sendCommand("aumentar_volumen");
         }
 
         public void decreaseVolume() {
-            sendCommand("decrease_volume");
+            sendCommand("bajar_volumen");
         }
 
-        private void sendCommand(final String command) {
-            if (socket != null && socket.isConnected() && writer != null) {
-                executor.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            writer.write(command);
-                            writer.flush();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+    private boolean isSendingMessage = false;
+
+    public void sendCommand(final String command) {
+        // Verificar si ya se está enviando un mensaje
+        if (isSendingMessage) {
+            return; // Ignorar llamadas adicionales mientras se envía el mensaje actual
+        }
+
+        isSendingMessage = true; // Marcar que se está enviando un mensaje
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    writer.write(command);
+                    writer.flush();
+                } catch (IOException e) {
+                    crear_aviso();
+                }
+                catch (Exception e2){
+                    crear_aviso();
+                }
+                finally {
+                    isSendingMessage = false;
+                }
             }
-        }
+        }).start();
+    }
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
-        public void disconnect() {
+        return START_STICKY;
+    }
+
+
+    public void disconnect() {
+            sendCommand("fin");
             try {
                 if (writer != null) {
                     writer.close();
@@ -100,5 +110,33 @@ public class Control_Vol {
                 e.printStackTrace();
             }
         }
+        public void crear_aviso(){
+            if (aviso== null) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        aviso = new AlertDialog.Builder(ventana);
+                        aviso.setTitle("Error de conexión");
+                        aviso.setMessage("No se pudo conectar al servidor.");
+                        aviso.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                                aviso=null;
+                            }
+                        });
+                        AlertDialog dialog = aviso.create();
+                        dialog.show();
+                    }
+                });
+            }
+
+        }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
+}
 

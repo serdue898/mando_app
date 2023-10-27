@@ -4,34 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#17A2C5"
+    android:background="#4D4D4D"
     tools:context=".MainActivity">
+
+
+    <View
+        android:id="@+id/img_conectado"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="26dp"
+        android:background="@drawable/joystick_ball"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Tx_ip"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
 
     <EditText
         android:id="@+id/Tx_ip"
         android:layout_width="168dp"
         android:layout_height="48dp"
+        android:autofillHints=""
+        android:color="@color/white"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/ip"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.045" />
+
 
     <Button
         android:id="@+id/btt_conectar"
+        android:background="@drawable/boton_1"
+        android:backgroundTint="#BF5353"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#952B2B"
-        android:backgroundTint="#BF5353"
-        android:onClick="conectar_ip"
+
         android:text="@string/conectar"
-        android:textColorHighlight="#812222"
-        android:textColorLink="#982C2C"
+        android:textColorHighlight="@color/white"
+        android:textColorLink="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.384"
@@ -39,84 +58,48 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="88dp"
-        android:layout_height="23dp"
-        android:layout_marginEnd="4dp"
-        android:text="@string/ip_ordenador"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Tx_ip"
-        app:layout_constraintHorizontal_bias="0.761"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.066" />
-
-    <FrameLayout
-        android:layout_width="84dp"
-        android:layout_height="83dp"
-        android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183">
-
-        <ImageView
-            android:id="@+id/joystick"
-            android:layout_width="82dp"
-            android:layout_height="81dp"
-            android:background="@android:color/transparent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/joystick" />
-
-        <ImageView
-            android:id="@+id/ball"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/joystick_ball" />
-
-    </FrameLayout>
-
     <TableLayout
         android:id="@+id/tableLayout2"
-        android:layout_width="287dp"
-        android:layout_height="260dp"
+        android:layout_width="335dp"
+        android:layout_height="238dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/contenedores"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tx_ip"
-        app:layout_constraintVertical_bias="0.397">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.935">
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btt_vol_up"
+                android:id="@+id/btt_pause"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#952B2B"
+                android:layout_margin="10dp"
                 android:backgroundTint="#BF5353"
-                android:text="vol up" />
+                android:text="@string/pause"
+                android:background="@drawable/boton_1"/>
 
             <Button
-                android:id="@+id/btt_vol_down"
+                android:id="@+id/btt_atrasar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#952B2B"
+                android:layout_margin="10dp"
+                android:background="@drawable/boton_1"
                 android:backgroundTint="#BF5353"
-                android:text="vol down" />
+                android:text="@string/atras" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/btt_adelantar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#952B2B"
+                android:layout_margin="10dp"
+                android:background="@drawable/boton_1"
                 android:backgroundTint="#BF5353"
-                android:text="mute" />
+                android:text="@string/adelante" />
 
         </TableRow>
 
@@ -124,13 +107,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#952B2B"
-                android:backgroundTint="#BF5353"
-                android:text="Button" />
         </TableRow>
 
         <TableRow
@@ -141,5 +117,71 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </TableLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="309dp"
+        android:layout_height="190dp"
+        android:layout_marginTop="192dp"
+        android:background="@drawable/contenedores"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <Button
+            android:id="@+id/btt_vol_up"
+            android:layout_width="127dp"
+            android:layout_height="51dp"
+            android:background="@drawable/boton_1"
+            android:backgroundTint="#BF5353"
+            android:text="vol up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.912"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.273" />
+
+        <Button
+            android:id="@+id/btt_vol_down"
+            android:layout_width="126dp"
+            android:layout_height="51dp"
+            android:background="@drawable/boton_1"
+            android:backgroundTint="#BF5353"
+            android:text="vol down"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.907"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.755" />
+
+        <com.ingenieriajhr.joystickjhr.JoystickJhr
+            android:id="@+id/joystick2"
+            android:layout_width="124dp"
+            android:layout_height="124dp"
+            android:layout_centerHorizontal="true"
+            app:alphaCircleFirst="200"
+            app:alphaCircleSecond="255"
+            app:colorFirst="#2979FF"
+            app:colorSecond="#2979FF"
+            app:colorText="#D5D8E7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.484"
+            app:radioCircle="0.5"
+            app:relleno="true"
+            app:rellenoSize="12"
+            app:xtextOffset="-38"
+            app:ytextOffset="-15" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

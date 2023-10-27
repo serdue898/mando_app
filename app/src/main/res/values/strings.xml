@@ -3,4 +3,8 @@
     <string name="conectar">conectar</string>
     <string name="ip_ordenador">ip ordenador</string>
     <string name="ip">ip</string>
+    <string name="mute">mute</string>
+    <string name="pause">pause</string>
+    <string name="atras"><![CDATA[<--]]></string>
+    <string name="adelante"><![CDATA[-->]]></string>
 </resources>
